@@ -30,15 +30,14 @@ export function Model(props: any) {
     }
   })
 
-  // Оптимизированный конфиг материала
-  const fastGlassProps = {
+  const glassProps = {
     transparent: true,
-    opacity: 0.5,           // Прозрачность
-    metalness: 0.9,         // Сильные отражения (блеск)
-    roughness: 0.05,        // Гладкая поверхность
-    side: THREE.DoubleSide, // Видим обе стороны
-    toneMapped: false,      // Сочные, яркие цвета
-    depthWrite: false,      // Убирает баги наложения прозрачных слоев друг на друга
+    opacity: 0.5,           
+    metalness: 0.1,         
+    roughness: 0.05,        
+    side: THREE.DoubleSide, 
+    toneMapped: false,      
+    depthWrite: false,      
   }
 
   return (
@@ -57,9 +56,8 @@ export function Model(props: any) {
           position={[-0.68, 0.28, -1.5]}
           rotation={[1.58, -0.02, -0.01]}
           scale={[0.17, 0.03, 0.17]}
-          /* УБРАЛИ castShadow/receiveShadow для скорости */
         >
-          <meshPhysicalMaterial {...fastGlassProps} color="#ffffff" emissive="#ffffff" emissiveIntensity={0.2} />
+          <meshPhysicalMaterial {...glassProps} color="#ffffff" emissive="#ffffff" emissiveIntensity={0.2} />
         </mesh>
 
         {/* LOGO 3 - РОЗОВЫЙ */}
@@ -70,7 +68,7 @@ export function Model(props: any) {
           rotation={[1.58, -0.34, 0]}
           scale={[0.17, 0.03, 0.17]}
         >
-          <meshPhysicalMaterial {...fastGlassProps} color="#926775" emissive="#926775" emissiveIntensity={0.5} />
+          <meshPhysicalMaterial {...glassProps} color="#926775" emissive="#926775" emissiveIntensity={0.5} />
         </mesh>
 
         {/* LOGO 2 - ЗЕЛЕНЫЙ */}
@@ -82,7 +80,7 @@ export function Model(props: any) {
           scale={[0.17, 0.03, 0.17]}
           onClick={() => window.open('https://t.me/g0s2piid', '_blank')}
         >
-          <meshPhysicalMaterial {...fastGlassProps} color="#3E625A" emissive="#3E625A" emissiveIntensity={0.6} />
+          <meshPhysicalMaterial {...glassProps} color="#3E625A" emissive="#3E625A" emissiveIntensity={0.6} />
         </mesh>
       </group>
     </group>
