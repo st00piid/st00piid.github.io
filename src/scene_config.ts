@@ -1,41 +1,53 @@
 import { Howl } from 'howler';
-
+import { FAM_LINKS, HOME_LINKS } from './data';
 
 export interface SceneConfig {
   camera: [number, number, number];
   target: [number, number, number];
   title: string;
   description?: string;
-  link?: string | null;
+  link?: any;
   fov?: number;
-  entrySound: string;
+  entrySound: keyof typeof SFX;
+  data?: any
 }
 
 export const SFX: Record<string, Howl> = {
   homewhoosh : new Howl({
-        src: ['/sounds/home_whoosh.wav'],
-        volume: 1.0, 
-        html5: true, 
+        src: ['sounds/home_whoosh.mp3'],
+        volume: 0.8, 
+        preload: true,
+        html5: false, 
     }),
   bio_whoosh : new Howl({
-        src: ['/sounds/bio_whoosh.wav'],
-        volume: 1.0, 
-        html5: true, 
+        src: ['sounds/bio_whoosh.mp3'],
+        volume: 0.8,
+        preload: true, 
+        html5: false, 
     }),
   links_whoosh : new Howl({
-        src: ['/sounds/links_whoosh.wav'],
-        volume: 1.0, 
-        html5: true, 
+        src: ['sounds/links_whoosh.mp3'],
+        volume: 0.8,
+        preload: true, 
+        html5: false, 
     }),
   stuck_whoosh : new Howl({
-        src: ['/sounds/stuck_whoosh.wav'],
-        volume: 1.0, 
-        html5: true, 
+        src: ['sounds/stuck_whoosh.mp3'],
+        volume: 0.5, 
+        preload: true,
+        html5: false, 
     }),
   intro_whoosh : new Howl({
-        src: ['/sounds/intro_whoosh.wav'],
-        volume: 1.0, 
-        html5: true, 
+        src: ['sounds/intro_whoosh.mp3'],
+        volume: 0.8, 
+        preload: true,
+        html5: false, 
+    }),
+  hover_pop : new Howl({
+        src: ['sounds/pop.mp3'],
+        volume: 0.4, 
+        preload: true,
+        html5: false, 
     }),
 }
 
@@ -45,13 +57,14 @@ export const SCENES: Record<string, SceneConfig> = {
     target: [0, 0, 0],
     link: null,
     title: 'S2PIID',
-    entrySound: 'homewhoosh',
+    entrySound: 'introwhoosh',
+    description: '[connect: @s2piid]'
   },
   'HOME': {
     camera: [0, 0, 2.7],
-    target: [0, 0, 0],
-    link: null,
-    title: 'ЛОББИ',
+    target: [0, 0.3, 0],
+    link: HOME_LINKS,
+    title: 'home',
     entrySound: 'homewhoosh', 
   },
 
@@ -60,15 +73,15 @@ export const SCENES: Record<string, SceneConfig> = {
     target: [-2, 0.4, 2.2],
     fov: 110,
     link: null,
-    title: 'БИО',
+    title: 'bio',
     entrySound: 'bio_whoosh',
   },
   'LINKS': {
     camera: [0, -0.3, 0.5],
-    target: [-1, 0, 0],
+    target: [-1, 0, -0.01],
     fov: 110,
-    link: null,
-    title: 'ССЫЛКИ',
-    entrySound: 'links_whoosh'
+    link: FAM_LINKS,
+    title: 'fam',
+    entrySound: 'links_whoosh',
   }
 }

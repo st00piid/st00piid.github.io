@@ -3,6 +3,7 @@ import { Stage, Environment, Stars, CameraControls, useProgress} from '@react-th
 import { Model } from './Model'
 import { useRef, Suspense, useState, useEffect} from 'react'
 import './App.css';
+import { UI } from "./UI"
 import { Howl } from 'howler';
 import { SCENES, SFX } from './scene_config';
 import { EffectComposer, Noise } from '@react-three/postprocessing'
@@ -12,7 +13,6 @@ import { BlendFunction } from 'postprocessing'
 function LoadingScreen({ isReady, onEntered, hasStarted }) {
   const { progress } = useProgress();
 
-  // Если уже зашли, полностью убираем компонент из памяти
   if (hasStarted) return null;
 
   return (
@@ -79,6 +79,7 @@ const shakeCamera = (shakecurrent) => {
 
 requestAnimationFrame(animate);
 };
+
 export default function App() {
   const cameraRef = useRef<CameraControls>(null!)
   const [currentScene, setCurrentScene] = useState('START')
@@ -109,6 +110,7 @@ export default function App() {
   }
 
   return (
+    
     <div style={{ width: '100vw', height: '100vh', background: '#000000', position: 'relative' }}>
       
       <LoadingScreen 
@@ -119,15 +121,12 @@ export default function App() {
           goToScene('HOME')
         }} />
       {hasStarted && (
-        <div className="nav-container">
-        <button className="nav-button" onClick={() => goToScene('HOME')}>HOME</button>
-        <button className="nav-button" onClick={() => goToScene('LINKS')}>LINKS</button>
-        <button className="nav-button" onClick={() => goToScene('BIO')}>BIO</button>
-      </div>
+        <UI currentScene={currentScene} goToScene={goToScene} />
       )}
 
 
-      <Canvas camera={{ fov: 90 }}>
+      <Canvas camera={{ fov: 90 }} dpr={[1, 1.5]} // Ограничивает разрешение (не дает уходить в 4К)
+  gl={{ powerPreference: "high-performance", antialias: false }} style={{ pointerEvents: 'none' }} >
         <Suspense fallback={null}>
           <Stage intensity={0.5} environment="city" adjustCamera={false}>
             <Model />
@@ -137,8 +136,8 @@ export default function App() {
 
         <EffectComposer>
           <Noise 
-            opacity={0.08} // Сила шума
-            // blendFunction={BlendFunction.ADD} // Как шум накладывается на свет // Делает шум более мягким
+            opacity={0.2} // Сила шума
+            // blendFunction={BlendFunction.SCREEN} // Как шум накладывается на свет // Делает шум более мягким
           />
         </EffectComposer>
         <CameraControls 

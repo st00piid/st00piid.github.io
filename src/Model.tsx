@@ -5,7 +5,7 @@ import { useFrame } from '@react-three/fiber'
 
 export function Model(props: any) {
   const group = useRef<THREE.Group>()
-  const { nodes, materials } = useGLTF('/roomsite-v1-v1.glb') as any
+  const { nodes, materials } = useGLTF('roomsite-v1-v1.glb') as any
   
   const logRef4 = useRef<THREE.Mesh>(null!)
   const logRef3 = useRef<THREE.Mesh>(null!)
