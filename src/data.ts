@@ -1,6 +1,7 @@
 export const FAM_LINKS = [
     {name: "fam store", url: "https://taplink.cc/fam_us"},
-    {name: "лох", url: "https://t.me/suckdmzototrizamikf"}
+    {name: "лох", url: "https://t.me/suckdmzototrizamikf"},
+    {name: "гошабит", url: "https://t.me/goshabit"}
 ]
 
 export const HOME_LINKS = [
@@ -9,6 +10,5 @@ export const HOME_LINKS = [
     {name: "soundcloud", url: "https://on.soundcloud.com/FQPypJ67lapDLbay1p"},
     {name: "youtube", url: "https://www.youtube.com/@st00piid"},
     {name: "beats", url: "https://www.youtube.com/@s2piid"}
-
 ]
 
