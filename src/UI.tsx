@@ -11,9 +11,15 @@ export const UI = ({currentScene , goToScene}) => {
         {scene.link && (
         <div className="overlay-links" key={currentScene}>
         {scene.link.map((item, index) => (
+          item.url ? (
             <a key={index} href={item.url} className="nav-link" style={{ '--i': index } as React.CSSProperties} target="_blank" onMouseEnter={() => SFX.hover_pop.play()}>
               {item.name}
             </a>
+          ) : (
+            <span key={index} className="nav-link text-only" style={{ '--i': index } as React.CSSProperties} target="_blank" onMouseEnter={() => SFX.hover_pop.play()}>
+              {item.name}
+            </span>
+          )
           ))}
         </div>
       )}

@@ -57,20 +57,15 @@
   position: relative;
   opacity: 0;
   animation: slideIn 1s ease forwards;
-  animation-delay: calc(var(--i) * 0.2s);
+  animation-delay: calc(0.2s + var(--i) * 0.1s);
 }
 
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    /* transform: translateX(-10px); */
-  }
-  to {
-    opacity: 0.8;
-    /* transform: translateX(0); */
-  }
+.nav-link.text-only { 
+    cursor: default;       
+    pointer-events: none;   
+    left: 10px;
 }
+
 
 .nav-link:hover {
   /* opacity: 1; */
@@ -91,6 +86,21 @@
   opacity: 1;
 }
 
+.text-only::before {left: -10px; content: "[ "; opacity: 1;}
+.text-only::after { content: " ]"; }
+
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    /* transform: translateX(-10px); */
+  }
+  to {
+    opacity: 0.8;
+    /* transform: translateX(0); */
+  }
+}
+
 .nav-container {
   position: absolute;
   top: 30px;
@@ -100,6 +110,7 @@
   display: flex;
   gap: 12px;
 }
+
 
 .nav-button {
   /* will-change: transform, opacity; */
@@ -138,4 +149,31 @@ body .nav-container .nav-link:hover {
   text-shadow: 0 0 15px #ffffff, 0 0 25px #ffffff, 0 0 40px #ffffff;
   transform: scale(1.02) translateZ(0);
   cursor: default !important;
+}
+
+
+@media (max-width: 768px) {
+  .overlay-links {
+    display: flex;             /* Выстраиваем ссылки в ряд (или колонку) */
+    flex-direction: column;    /* Если хочешь вертикальный скролл */
+    max-height: 300px;         /* Ограничиваем высоту, чтобы появился скролл */
+    overflow-y: auto;          /* Включаем вертикальную прокрутку */
+    padding-right: 10px;       /* Запас под палец */
+    
+    /* Красивый плавный скролл */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; 
+    
+    /* Убираем стандартный некрасивый скроллбар */
+    scrollbar-width: none;     /* Firefox */
+  }
+
+  .overlay-links::-webkit-scrollbar {
+    display: none;             /* Chrome/Safari */
+  }
+
+  .nav-link {
+    flex-shrink: 0;            /* Чтобы ссылки не сжимались */
+    margin-bottom: 20px;       /* Расстояние между ссылками для удобного нажатия пальцем */
+  }
 }

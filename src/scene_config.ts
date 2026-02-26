@@ -1,5 +1,5 @@
 import { Howl } from 'howler';
-import { FAM_LINKS, HOME_LINKS } from './data';
+import { FAM_LINKS, HOME_LINKS, BIO } from './data';
 
 export interface SceneConfig {
   camera: [number, number, number];
@@ -72,7 +72,7 @@ export const SCENES: Record<string, SceneConfig> = {
     camera: [-0.6, 0, 1.3],
     target: [-2, 0.4, 2.2],
     fov: 110,
-    link: null,
+    link: BIO,
     title: 'bio',
     entrySound: 'bio_whoosh',
   },
