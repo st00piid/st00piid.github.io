@@ -86,8 +86,12 @@
   opacity: 1;
 }
 
-.text-only::before {left: -10px; content: "[ "; opacity: 1;}
-.text-only::after { content: " ]"; }
+.text-only::before {position: static; content: "[ "; opacity: 1;}
+.text-only::after { 
+    content: " ]"; 
+    position: static;
+    opacity: 1;
+}
 
 
 @keyframes slideIn {
