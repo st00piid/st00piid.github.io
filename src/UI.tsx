@@ -16,7 +16,7 @@ export const UI = ({currentScene , goToScene}) => {
               {item.name}
             </a>
           ) : (
-            <span key={index} className="nav-link text-only" style={{ '--i': index } as React.CSSProperties} target="_blank" onMouseEnter={() => SFX.hover_pop.play()}>
+            <span key={index} className="nav-link text-only" style={{ '--i': index , '--random-padding' : `${Math.floor(Math.random() * 800)}px`} as React.CSSProperties} target="_blank" onMouseEnter={() => SFX.hover_pop.play()}>
               {item.name}
             </span>
           )
@@ -36,6 +36,12 @@ export const UI = ({currentScene , goToScene}) => {
         ))}
         
         </div>
+
+        <div className="watermark">
+                {/* DEV / DESIGN <br /> 3D / SFX / SCAN <br /> */}
+                {/* CORE <br /> */}
+                by s2piid
+            </div>
         </>
     )
 
