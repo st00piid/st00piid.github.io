@@ -18,7 +18,9 @@ export const HOME_LINKS = [
 
 export const BIO = [
     {name: "20 y.o."},
-    {name: "still looking for myself"},
-    {name: "open for collabs"},
-    {name: "dm me", url: "https://t.me/s2piiiid"}
+    {name: "work in progress"},
+    {name: "open for any type of collaboration"},
+    {name: "dm me", url: "https://t.me/s2piiiid", pos: "center"},
+    {name: "or"},
+    {name: "email me", url: "mailto:g0s2piid@gmail.com", pos: "center"}
 ]

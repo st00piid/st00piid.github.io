@@ -43,30 +43,32 @@ export function Model(props: any) {
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
-        <group position={[0, 1.06, 0]}>
-          <mesh geometry={nodes.Mesh_1_1.geometry} material={materials.Material_1} />
-          <mesh geometry={nodes.Mesh_1_2.geometry} material={materials.Material_0} />
-          <mesh geometry={nodes.Mesh_1_3.geometry} material={materials.Material} />
+        <group position={[0, 1.06, 0]} >
+          <mesh geometry={nodes.Mesh_1_1.geometry} material={materials.Material_1} raycast={() => null}/>
+          <mesh geometry={nodes.Mesh_1_2.geometry} material={materials.Material_0} raycast={() => null} />
+          <mesh geometry={nodes.Mesh_1_3.geometry} material={materials.Material} raycast={() => null}/>
         </group>
 
         {/* LOGO 4 - СЕРЕБРО */}
-        <mesh
+        <mesh 
           ref={logRef4}
           geometry={nodes.logo_01004.geometry}
           position={[-0.68, 0.28, -1.5]}
           rotation={[1.58, -0.02, -0.01]}
           scale={[0.17, 0.03, 0.17]}
+          raycast={() => null}
         >
           <meshPhysicalMaterial {...glassProps} color="#ffffff" emissive="#ffffff" emissiveIntensity={0.2} />
         </mesh>
 
         {/* LOGO 3 - РОЗОВЫЙ */}
-        <mesh
+        <mesh 
           ref={logRef3}
           geometry={nodes.logo_01003.geometry}
           position={[0.66, 0.14, -0.56]}
           rotation={[1.58, -0.34, 0]}
           scale={[0.17, 0.03, 0.17]}
+          raycast={() => null}
         >
           <meshPhysicalMaterial {...glassProps} color="#926775" emissive="#926775" emissiveIntensity={0.5} />
         </mesh>

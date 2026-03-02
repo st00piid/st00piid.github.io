@@ -49,6 +49,12 @@ export const SFX: Record<string, Howl> = {
         preload: true,
         html5: false, 
     }),
+  hover_whoop : new Howl({
+        src: ['sounds/label.mp3'],
+        volume: 1, 
+        preload: true,
+        html5: false, 
+    }),
 }
 
 export const SCENES: Record<string, SceneConfig> = {

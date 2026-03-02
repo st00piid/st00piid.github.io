@@ -1,3 +1,18 @@
+.screen-interactive {
+  width: 150px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0); /* Сначала невидима */
+  border: 2px solid rgba(255, 255, 255, 0);
+  transition: all 0.2s ease-in-out; /* Плавность */
+  cursor: pointer;
+}
+
+/* Эффект при наведении */
+.screen-interactive:hover {
+  background: rgba(255, 255, 255, 0.1); /* Легкая вуаль */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); /* Свечение */
+}
+
 .loader-container {
   position: fixed;
   top: 0;
@@ -29,43 +44,52 @@
 }
 
 .watermark {
-  position: fixed; /* Прибиваем к экрану */
-  bottom: 15px;    /* Отступ снизу */
-  right: 20px;     /* Отступ справа */
-  
+  position: fixed;
+  bottom: 15px;
+  right: 20px;
+
   font-family: "Times New Roman", Times, serif;
   font-size: 9px;
   letter-spacing: 0px;
-  
+
   color: white;
-  opacity: 0.6;    
-  pointer-events: none; 
-  z-index: 100;  
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 100;
 }
 
 .overlay {
   font-family: "Times New Roman", Times, serif;
   letter-spacing: 0px;
   position: absolute;
-  top: 70%;    
-  left: 20%;
-  transform: translate(-50%, -50%);
+  top: auto;
+  bottom: 20%;    
+  left: 0;   
+  /* transform: translate(-50%, -50%); */
+  /* transform: translateY(-50%); */
   z-index: 10;  
   color: white;
   font-size: 20px;
   pointer-events: none;
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+  width: 100%;
+
 }
+
 
 .overlay-links {
   display: flex;
   flex-direction: column;
   gap: 10px;
   pointer-events: auto; 
+  width: 100%;
 }
 
 .nav-link {
+  margin-left: 20%;
+  align-self: flex-start;
   display: block;
+  max-width: 75%;
   text-decoration: none;
   color: white;
   letter-spacing: 0px;
@@ -75,16 +99,24 @@
   animation-delay: calc(0.2s + var(--i) * 0.1s);
 }
 
+.nav-link.pos-center {
+  align-self: center;    
+  margin-left: 0;        
+  text-align: center;
+  left: 0 !important;   
+  transform: none !important; 
+  width: auto;
+}
+
 .nav-link.text-only { 
     cursor: default;       
     pointer-events: none;   
     left: var(--random-padding);
-    /* left: 10px; */
+    
 }
 
 
 .nav-link:hover {
-  /* opacity: 1; */
   transform: translateX(10px); 
   text-decoration: underline;
   color: white;
@@ -95,7 +127,6 @@
   position: absolute;
   left: -10px;
   opacity: 0;
-  /* transition: opacity 0.2s; */
 }
 
 .nav-link:hover::before {
@@ -113,11 +144,9 @@
 @keyframes slideIn {
   from {
     opacity: 0;
-    /* transform: translateX(-10px); */
   }
   to {
     opacity: 0.8;
-    /* transform: translateX(0); */
   }
 }
 
@@ -133,21 +162,16 @@
 
 
 .nav-button {
-  /* will-change: transform, opacity; */
   transform: translateZ(0);
   padding: 10px 20px;
   text-shadow: 0 0 15px #ffffff, 0 0 20px #ffffff;
   background: rgba(255, 255, 255, 0.15);
-  /* backdrop-filter: blur(3px); */
   border: 0px solid rgba(255, 255, 255, 0.2);
   border-radius: 0px;
   color: white;
   font-size: 14px;
   letter-spacing: 0px;
-  /* cursor: click; */
   cursor: default !important;
-  /* transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
-              background-color 0.2s ease; */
   transition: none !important;
   text-transform: lowercase;
 }
@@ -157,10 +181,8 @@ body .nav-container .nav-link:hover {
 }
 
 .nav-button:hover {
-  /* Вместо того чтобы высветлять фон, попробуй инверсию или легкую рамку */
   background: rgba(255, 255, 255, 0.3); 
   color: #fff; /* Принудительно белый */
-  /* Оставь только один слой тени, чтобы текст не "расплывался" */
   text-shadow: 0 0 10px #ffffff; 
   transform: scale(1.02);
 }
@@ -174,34 +196,32 @@ body .nav-container .nav-link:hover {
 
 @media (max-width: 768px) {
   .overlay-links {
-    display: flex;             /* Выстраиваем ссылки в ряд (или колонку) */
-    flex-direction: column;    /* Если хочешь вертикальный скролл */
-    max-height: 300px;         /* Ограничиваем высоту, чтобы появился скролл */
-    overflow-y: auto;          /* Включаем вертикальную прокрутку */
-    padding-right: 10px;       /* Запас под палец */
-    
-    /* Красивый плавный скролл */
+    display: flex;
+    flex-direction: column;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 10px;
+
     scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch; 
-    
-    /* Убираем стандартный некрасивый скроллбар */
-    scrollbar-width: none;     /* Firefox */
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: none;
   }
 
   .overlay-links::-webkit-scrollbar {
-    display: none;             /* Chrome/Safari */
+    display: none;
   }
 
   .nav-link {
-    flex-shrink: 0;            /* Чтобы ссылки не сжимались */
-    margin-bottom: 20px;       /* Расстояние между ссылками для удобного нажатия пальцем */
+    flex-shrink: 0;
+    margin-bottom: 20px;
   }
 
   .nav-link.text-only { 
     cursor: default;       
     pointer-events: none;   
-    left: calc(var(--random-padding) / 2);
-      /* left: 10px; */
+    left: calc(var(--random-padding) / 10);
+      
   }
 
 }

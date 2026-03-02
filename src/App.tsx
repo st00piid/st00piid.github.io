@@ -9,6 +9,7 @@ import { SCENES, SFX } from './scene_config';
 import { EffectComposer, Noise } from '@react-three/postprocessing'
 import { BlendFunction } from 'postprocessing'
 
+import { ScreenButton } from './ScreenButton'
 
 function LoadingScreen({ isReady, onEntered, hasStarted }) {
   const { progress } = useProgress();
@@ -108,7 +109,7 @@ export default function App() {
       setCurrentScene(key)
     }
   }
-
+  const [showLabel, setShowLabel] = useState(false);
   return (
     
     <div style={{ width: '100vw', height: '100vh', background: '#000000', position: 'relative' }}>
@@ -121,12 +122,14 @@ export default function App() {
           goToScene('HOME')
         }} />
       {hasStarted && (
-        <UI currentScene={currentScene} goToScene={goToScene} />
+        <UI currentScene={currentScene} goToScene={goToScene} showLabel={showLabel} />
       )}
 
 
-      <Canvas camera={{ fov: 90 }} dpr={[1, 1.5]} // Ограничивает разрешение (не дает уходить в 4К)
-  gl={{ powerPreference: "high-performance", antialias: false }} style={{ pointerEvents: 'none' }} >
+      <Canvas camera={{ fov: 90 }} dpr={[1, 1.5]}
+  gl={{ powerPreference: "high-performance", antialias: false }} 
+style={{ pointerEvents: 'none' }}
+  >
         <Suspense fallback={null}>
           <Stage intensity={0.5} environment="city" adjustCamera={false}>
             <Model />
@@ -146,6 +149,13 @@ export default function App() {
           mouseButtons={{ left: 0, middle: 0, right: 0, wheel: 0 }} 
           touches={{ one: 0, two: 0, three: 0 }}
         />
+
+        {currentScene === 'LINKS' && (
+  <ScreenButton 
+    onHover={() => setShowLabel(true)} 
+    onUnhover={() => setShowLabel(false)} 
+  />
+)}
       </Canvas>
 
     </div>
