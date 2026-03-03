@@ -8,9 +8,9 @@ export const UI = ({currentScene , goToScene, showLabel}) => {
 
     return(
     <>
-        <div className="overlay">
+        <div className={`overlay ${currentScene}`}>
         {scene.link && (
-        <div className="overlay-links" key={currentScene}>
+        <div className={`overlay-links`} key={currentScene}>
         {scene.link.map((item, index) => {
           const isCenter = item.pos === 'center';
           return (
@@ -19,7 +19,7 @@ export const UI = ({currentScene , goToScene, showLabel}) => {
               {item.name}
             </a>
           ) : (
-            <span key={index} className="nav-link text-only" style={{ '--i': index , '--random-padding' : `${Math.floor(Math.random() * 800)}px`} as React.CSSProperties} target="_blank" onMouseEnter={() => SFX.hover_pop.play()}>
+            <span key={index} className="nav-link text-only" style={{ '--i': index , '--random-padding' : `${Math.floor(Math.random() * 600)}px`} as React.CSSProperties} target="_blank" onMouseEnter={() => SFX.hover_pop.play()}>
               {item.name}
             </span>
           )
@@ -47,26 +47,21 @@ export const UI = ({currentScene , goToScene, showLabel}) => {
 
           <div 
         style={{
-          /* Копируем шрифт и базовый вид из .nav-link / .overlay */
           fontFamily: '"Times New Roman", Times, serif',
           fontSize: '20px',
           color: 'white',
           letterSpacing: '0px',
           
-          /* Копируем свечение из .overlay */
           textShadow: '0 0 5px rgba(255, 255, 255, 0.8)',
           
-          /* Центрируем текст по экрану */
           position: 'absolute',
           top: '30%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
           
-          /* Логика появления */
           opacity: showLabel ? 0.8 : 0,
           transition: 'opacity 0.2s ease', // Сделал чуть медленнее (0.5s) для благородства
           
-          /* Технические параметры */
           zIndex: 100,
           pointerEvents: 'none',
           whiteSpace: 'nowrap',

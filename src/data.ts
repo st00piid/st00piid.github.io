@@ -18,7 +18,7 @@ export const HOME_LINKS = [
 
 export const BIO = [
     {name: "20 y.o."},
-    {name: "work in progress"},
+    // {name: "work in progress"},
     {name: "open for any type of collaboration"},
     {name: "dm me", url: "https://t.me/s2piiiid", pos: "center"},
     {name: "or"},

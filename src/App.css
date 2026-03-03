@@ -1,16 +1,15 @@
 .screen-interactive {
   width: 150px;
   height: 100px;
-  background: rgba(255, 255, 255, 0); /* Сначала невидима */
+  background: rgba(255, 255, 255, 0); 
   border: 2px solid rgba(255, 255, 255, 0);
-  transition: all 0.2s ease-in-out; /* Плавность */
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
 
-/* Эффект при наведении */
 .screen-interactive:hover {
-  background: rgba(255, 255, 255, 0.1); /* Легкая вуаль */
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); /* Свечение */
+  background: rgba(255, 255, 255, 0.1); 
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 .loader-container {
@@ -195,6 +194,10 @@ body .nav-container .nav-link:hover {
 
 
 @media (max-width: 768px) {
+  .overlay.LINKS{
+    bottom: 0%;
+    top: 70%;
+  }
   .overlay-links {
     display: flex;
     flex-direction: column;
