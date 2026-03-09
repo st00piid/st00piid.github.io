@@ -112,7 +112,7 @@ export default function App() {
   const [showLabel, setShowLabel] = useState(false);
   return (
     
-    <div style={{ width: '100vw', height: '100vh', background: '#000000', position: 'relative' }}>
+    <div style={{ width: '100vw', height: '100dvh', background: '#000000', position: 'relative', overflow: 'hidden' }}>
       
       <LoadingScreen 
         isReady={isReady} 
